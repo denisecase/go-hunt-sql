@@ -1,0 +1,75 @@
+{{define "login"}}
+{{template "header" .}}
+{{template "nav" .}}
+
+<main class="container context mt-5 ">
+  <div class="row">
+    <div class="col">
+
+      <br>
+      <br>
+
+      <section class="container-sm mt-5">
+        <div class="col">
+          <div class="card card-body text-center">
+            <h1 class="text-center"> Login </h1>
+
+            <!-- Display validation errors, if any -->
+
+            <div>
+              {{ if .Errors }}
+
+                {{ with .Errors }}
+                <p class="error">{{ . }}</p>
+                {{ end }}
+
+              {{ end }}
+            </div>
+
+            <form method="post" action="/user/login">
+
+              <!-- Server-side names are capitalized in Go (Email and Password)-->
+
+              <div class="form-group ">
+                <label for="email">Email</label><br>
+                <input type="email" id="email" name="Email" placeholder="Email" value="{{.Email}}" />
+              </div>
+              <br>
+
+              <div class="form-group ">
+                <label for="password">Password</label><br>
+                <input type="password" id="password" name="Password" placeholder="password" value="{{.Password}}" />
+              </div>
+              <br>
+
+              <br>
+              <button class="btn btn-primary" id="login" type="submit" value="submit">Login</button>
+
+            </form>
+
+            <div
+              style="display: flex; flex-direction: row; justify-content: space-between; align-content: space-between; margin-top: 2em;">
+
+              <a href="/user/forgot-password"><button class="mr-5"
+                  style="background:none; border: none;  padding: 0;color: #006747; cursor: pointer; display: flex; margin: 0 auto;">Forgot
+                  your password?</button></a>
+
+              <a href="/user/register"> <button id="register"
+                  style="background:none; border: none;  padding: 0;color:blue; cursor: pointer;display: flex; margin: 0 auto;">Register</button>
+              </a>
+
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <br>
+      <br>
+
+    </div>
+  </div>
+</main>
+
+{{template "footer" .}}
+{{end}}
